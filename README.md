@@ -1,2 +1,1 @@
-# vtr-group23
-Selected theme - Terrain generation
+# VTR group project 2023 - Terrain generation
