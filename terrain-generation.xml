@@ -3,7 +3,7 @@
     <assets>
         <viewports>
             <viewport name='MainViewport'>
-                <CLEAR_COLOR r="0.0" g='0.0' b='0.0'/>
+                <CLEAR_COLOR r='0.0' g='0.0' b='0.0'/>
             </viewport>
         </viewports>
     </assets>
