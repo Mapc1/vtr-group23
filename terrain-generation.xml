@@ -1,0 +1,17 @@
+<?xml version='1.0' ?>
+<project name='Terrain generation' width='1280' height='720'>
+    <assets>
+        <viewports>
+            <viewport name='MainViewport'>
+                <CLEAR_COLOR r="0.0" g='0.0' b='0.0'/>
+            </viewport>
+        </viewports>
+    </assets>
+
+    <pipelines>
+        <pipeline name='Main'>
+            <pass name='MainStep' class='default'>
+            </pass>
+        </pipeline>
+    </pipelines>
+</project>
