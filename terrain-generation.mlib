@@ -1,0 +1,26 @@
+<materialLib name="base">
+
+    <shaders>
+        <shader name="planets" vs = "shaders/planets.vert" 
+                              ps = "shaders/planets.frag" />
+    </shaders>
+    <materials>
+        <material name="planets">
+            <shader name="planets">
+                <values>
+                    <valueof uniform="m_pvm"
+                        type = "RENDERER"
+                        component="PROJECTION_VIEW_MODEL" />
+                    
+                    <valueof uniform="m_normal"
+                        type="RENDERER"
+                        component="NORMAL"/>
+                    <valueof uniform="m_model"
+                        type="RENDERER"
+                        component="MODEL"/>
+                </values>
+            </shader>
+        </material>
+    </materials>
+
+</materialLib>
