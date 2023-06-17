@@ -39,6 +39,11 @@
 
     <pipelines>
         <pipeline name='Main'>
+            <pass name='GenNormals' class='compute'>
+                <material name='gen_normals' fromLibrary='base'
+                    dimX=1000 dimY=1 dimZ=1/>
+            </pass>
+            
             <pass name='MainStep' class='default'>
                 <scenes>
                     <scene name='sphere' />

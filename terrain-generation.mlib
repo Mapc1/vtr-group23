@@ -1,10 +1,39 @@
+<?xml version='1.0' ?>
 <materialLib name="base">
 
     <shaders>
         <shader name="planets" vs = "shaders/planets.vert" 
                               ps = "shaders/planets.frag" />
+        <shader name="gen_normals" cs = "shaders/gen_normals.comp"/>    
     </shaders>
+    
+    <buffers>
+        <buffer name="normals">
+            <DIM x="1000" y = "1" z = "1"/>
+            <structure>
+                <field value="FLOAT"/>
+            </structure>
+        </buffer>
+    </buffers>
+
     <materials>
+        <material name='gen_normals'>
+            <shader name='gen_normals'>
+                <values>
+                    <value uniform="timer"
+                        type="RENDERER"
+                        component="TIMER"/>
+                </values>
+            </shader>
+
+            <buffers>
+                <buffer name= "normals">
+                    <TYPE value="SHADER_STORAGE" />
+                    <BINDING_POINT value="1"/>
+                </buffer>
+            </buffers>
+        </material>
+        
         <material name="planets">
             <shader name="planets">
                 <values>
@@ -20,6 +49,13 @@
                         component="MODEL"/>
                 </values>
             </shader>
+
+            <buffers>
+                <buffer name= "normals">
+                    <TYPE value="SHADER_STORAGE" />
+                    <BINDING_POINT value="1"/>
+                </buffer>
+            </buffers>
         </material>
     </materials>
 
