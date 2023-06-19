@@ -11,7 +11,7 @@
             <camera name='MainCamera'>
                 <viewport name='MainViewport'/>
                 <projection TYPE='PERSPECTIVE' FOV='60.0' NEAR='1' FAR='1000.0'/>
-                <POSITION x='5' y='5' z='5'/>
+                <POSITION x='2' y='2' z='2'/>
                 <LOOK_AT_POINT x='0' y='0' z='0'/>
                 <UP x='0' y='1' z='0'/>
             </camera>
@@ -39,11 +39,6 @@
 
     <pipelines>
         <pipeline name='Main'>
-            <!--pass name='GenNormals' class='compute'>
-                <material name='gen_normals' fromLibrary='base'
-                    dimX=1000 dimY=1 dimZ=1/>
-            </pass!-->
-            
             <pass name='MainStep' class='default'>
                 <scenes>
                     <scene name='sphere' />
@@ -53,8 +48,6 @@
                 <lights>
                     <light name='Sun'/>
                 </lights>
-            
-
                 <materialMaps>
                     <map fromMaterial='*'
                         toMaterial="planets" toLibrary="base" />

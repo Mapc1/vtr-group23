@@ -2,40 +2,30 @@
 <materialLib name="base">
 
     <shaders>
-        <shader name="planets" vs = "shaders/planets.vert" 
-                               gs = "shaders/planets.geom"
-                               ps = "shaders/planets.frag" />
-        
-        <!--shader name="gen_normals" cs = "shaders/gen_normals.comp"/!-->    
+        <shader name="planets">
+            <vs>
+                <file name="shaders/header.glsl"/>
+                <file name="shaders/perlin.glsl"/>
+                <file name="shaders/planets.vert"/>
+            </vs>
+            <gs>
+                <file name="shaders/header.glsl"/>
+                <file name="shaders/perlin.glsl"/>
+                <file name="shaders/planets.geom"/>
+            </gs>
+            <ps>
+                <file name="shaders/header.glsl"/>
+                <file name="shaders/perlin.glsl"/>
+                <file name="shaders/planets.frag"/>
+            </ps>
+        </shader>
     </shaders>
     
-    <!--buffers>
-        <buffer name="normals">
-            <DIM x="1000" y = "1" z = "1"/>
-            <structure>
-                <field value="FLOAT"/>
-            </structure>
-        </buffer>
-    </buffers!-->
+    <textures>
+        <texture name="grass" filename="textures/grass.jpg" mipmap="True"/>
+    </textures>
 
     <materials>
-        <!--material name='gen_normals'>
-            <shader name='gen_normals'>
-                <values>
-                    <value uniform="timer"
-                        type="RENDERER"
-                        component="TIMER"/>
-                </values>
-            </shader>
-
-            <buffers>
-                <buffer name= "normals">
-                    <TYPE value="SHADER_STORAGE" />
-                    <BINDING_POINT value="1"/>
-                </buffer>
-            </buffers>
-        </material!-->
-        
         <material name="planets">
             <shader name="planets">
                 <values>
@@ -55,15 +45,13 @@
 
                     <valueof uniform="l_dir" type="LIGHT" component="DIRECTION" id="0" />
 
+                    <valueof uniform="grass" type="TEXTURE_BINDING" context="CURRENT" component="UNIT" id="0"/>
+
                 </values>
             </shader>
-
-            <!--buffers>
-                <buffer name= "normals">
-                    <TYPE value="SHADER_STORAGE" />
-                    <BINDING_POINT value="1"/>
-                </buffer>
-            </buffers!-->
+            <textures>
+                <texture UNIT="0" name="grass"/>
+            </textures>
         </material>
     </materials>
 
