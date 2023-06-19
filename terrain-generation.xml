@@ -39,10 +39,10 @@
 
     <pipelines>
         <pipeline name='Main'>
-            <pass name='GenNormals' class='compute'>
+            <!--pass name='GenNormals' class='compute'>
                 <material name='gen_normals' fromLibrary='base'
                     dimX=1000 dimY=1 dimZ=1/>
-            </pass>
+            </pass!-->
             
             <pass name='MainStep' class='default'>
                 <scenes>
@@ -55,11 +55,12 @@
                 </lights>
             
 
-            <materialMaps>
+                <materialMaps>
                     <map fromMaterial='*'
                         toMaterial="planets" toLibrary="base" />
-            </materialMaps>
+                </materialMaps>
             </pass>
+        
         </pipeline>
     </pipelines>
 </project>
