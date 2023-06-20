@@ -2,6 +2,7 @@ uniform vec4 diffuse = vec4(0.0, 1, 0, 1);
 uniform float shine = 128;
 uniform vec4 specular = vec4(0.5, 0.5, 1.0, 1.0);
 uniform sampler2D grass;
+uniform float timer;
 
 in Data{
     vec4 pos;
@@ -33,10 +34,31 @@ void main(){
         DataIn.old_pos.y * DataIn.old_pos.y +
         DataIn.old_pos.z * DataIn.old_pos.z
     );
-    float is_spec = 0;
+    float is_spec = 0; 
     if (newdist - olddist <= 0) {
-        d = vec4(0.0, 0, 1, 1);
+        d = vec4(0, 0, 0.5, 1);
         is_spec = 1;
+
+        vec2 worley = vec2(0);
+
+        float frequency = 2;
+        float amplitude = 0.5;
+        float lacunarity = 4.0;
+        float persistence = 0.5;
+
+        for (int octave = 0; octave < 3; octave++) {
+            worley += amplitude * cellular2x2x2( vec3( frequency * DataIn.pos.xz, timer / 5000) );
+            frequency *= lacunarity;
+            amplitude *= persistence;
+        } 
+        float F1 = worley.x;
+
+        if (F1 >= 0.65) d = vec4(1);
+        
+
+
+        //d = d * mix(0, 0.5 + F1 , smoothstep(0.0, 0.003, 1-length(DataIn.pos.xz)));
+
     }
         
     if (intensity > 0){
