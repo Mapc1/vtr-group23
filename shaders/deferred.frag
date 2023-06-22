@@ -29,6 +29,5 @@ void main() {
     float n2 = amplitude_l2 * cnoise(frequency*pos);
     if (n2 > 0.2)
         n *= n2;
-
-    out_pos = pos + n * nn;
+    out_pos = pos * 0.5 + 0.5; // + n * nn;
 }

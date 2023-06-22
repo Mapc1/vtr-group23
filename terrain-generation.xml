@@ -3,7 +3,9 @@
     <assets>
         <scenes>
             <scene name='sphere'> 
-                <geometry name='Sphere' type='SPHERE' SLICES='1000' STACKS='1000'/>
+                <geometry name='Sphere' type='SPHERE' SLICES='512' STACKS='512' />
+                <geometry name = "Grid" type = "GRID" LENGTH="20"  DIVISIONS="10" />
+                
             </scene>
         </scenes>
         
@@ -14,6 +16,12 @@
                 <POSITION x='2' y='2' z='2'/>
                 <LOOK_AT_POINT x='0' y='0' z='0'/>
                 <UP x='0' y='1' z='0'/>
+            </camera>
+            
+            <camera name="Noise">
+                <viewport name="MainViewport" />
+                <POSITION x="0" y="1" z="0" />
+                <VIEW x="0" y="0" z="0" />
             </camera>
         </cameras>
 
@@ -40,6 +48,17 @@
     <pipelines>
         <pipeline name='Main'>
             <pass name='GenNoise' class='default'>
+                <scenes>
+                    <scene name='sphere' />
+                </scenes>
+                
+                <camera name="MainCamera"/>
+			
+				<lights>
+					<light name="Sun"/>
+				</lights>
+
+                
                 <material name='gen_noise' fromLibrary='base'/>
                 <renderTarget name='rTarget' fromLibrary='base'/>
             </pass>
