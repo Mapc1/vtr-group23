@@ -26,7 +26,7 @@ out Data {
 } DataOut;
 
 void main(){
-    vec4 newpos = texture(out_pos, texCoord0) * 2 - 1;
+    vec4 newpos = texture(out_pos, texCoord0);
     vec4 p1 = texture(out_pos, vec2(texCoord0.x + 1/1000, texCoord0.y));
     vec4 p2 = texture(out_pos, vec2(texCoord0.x - 1/1000, texCoord0.y));
     vec4 p3 = texture(out_pos, vec2(texCoord0.x, texCoord0.y + 1/1000));
@@ -42,5 +42,5 @@ void main(){
     DataOut.old_pos = position;
     DataOut.pos = newpos; 
 
-    gl_Position = m_pvm * newpos;
+    gl_Position = m_pvm * (position + newpos);
 } 

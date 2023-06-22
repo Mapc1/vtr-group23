@@ -1,5 +1,7 @@
 layout (location = 0) out vec4 out_pos;
 
+uniform mat4 m_vm;
+
 uniform int N_OCTAVES = 3; 
 
 in vec4 nn;
@@ -29,5 +31,6 @@ void main() {
     float n2 = amplitude_l2 * cnoise(frequency*pos);
     if (n2 > 0.2)
         n *= n2;
-    out_pos = pos * 0.5 + 0.5; // + n * nn;
+    out_pos = vec4(pos.x, n + pos.y, pos.z); // + n * nn;
+    //out_pos = vec4(0,0,1,1);
 }
