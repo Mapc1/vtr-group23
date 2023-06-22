@@ -3,7 +3,7 @@
     <assets>
         <scenes>
             <scene name='sphere'> 
-                <file name='models/sphere.obj'/>
+                <geometry name='Sphere' type='SPHERE' SLICES='1000' STACKS='1000'/>
             </scene>
         </scenes>
         
@@ -39,7 +39,13 @@
 
     <pipelines>
         <pipeline name='Main'>
+            <pass name='GenNoise' class='default'>
+                <material name='gen_noise' fromLibrary='base'/>
+                <renderTarget name='rTarget' fromLibrary='base'/>
+            </pass>
+
             <pass name='MainStep' class='default'>
+                <COLOR_CLEAR value='false'/>
                 <scenes>
                     <scene name='sphere' />
                 </scenes>
@@ -50,10 +56,10 @@
                 </lights>
                 <materialMaps>
                     <map fromMaterial='*'
-                        toMaterial="planets" toLibrary="base" />
+                        toMaterial='planets' toLibrary='base' />
                 </materialMaps>
             </pass>
-        
+
         </pipeline>
     </pipelines>
 </project>

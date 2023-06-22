@@ -6,20 +6,29 @@
             <vs>
                 <file name="shaders/header.glsl"/>
                 <file name="shaders/worley.glsl"/>
-                <file name="shaders/perlin.glsl"/>
                 <file name="shaders/planets.vert"/>
             </vs>
             <gs>
                 <file name="shaders/header.glsl"/>
                 <file name="shaders/worley.glsl"/>
-                <file name="shaders/perlin.glsl"/>
                 <file name="shaders/planets.geom"/>
             </gs>
             <ps>
                 <file name="shaders/header.glsl"/>
                 <file name="shaders/worley.glsl"/>
-                <file name="shaders/perlin.glsl"/>
                 <file name="shaders/planets.frag"/>
+            </ps>
+        </shader>
+        <shader name='gen_noise'>
+            <vs>
+                <file name="shaders/header.glsl"/>
+                <file name="shaders/perlin.glsl"/>
+                <file name="shaders/deferred.vert"/>
+            </vs>
+            <ps>
+                <file name="shaders/header.glsl"/>
+                <file name="shaders/perlin.glsl"/>
+                <file name="shaders/deferred.frag"/>
             </ps>
         </shader>
     </shaders>
@@ -28,7 +37,22 @@
         <texture name="grass" filename="textures/grass.jpg" mipmap="True"/>
     </textures>
 
+    <renderTargets>
+        <renderTarget name="rTarget">
+            <SIZE width="512" height="512"/>
+            <CLEAR_VALUES r="0.0" g="0.0" b="0.0" a="0.0"/>
+            <colors>
+                <color name="out_pos" internalFormat="RGBA32F"/>
+            </colors>
+        </renderTarget>
+    </renderTargets>
+
     <materials>
+        <material name='gen_noise'>
+            <shader name='gen_noise'>
+            </shader>
+        </material>
+
         <material name="planets">
             <shader name="planets">
                 <values>
@@ -53,12 +77,14 @@
                     <valueof uniform="l_dir" type="LIGHT" component="DIRECTION" id="0" />
 
                     <valueof uniform="grass" type="TEXTURE_BINDING" context="CURRENT" component="UNIT" id="0"/>
+                    <valueof uniform="out_pos" type="TEXTURE_BINDING" context="CURRENT" component="UNIT" id="1"/>
 
                 </values>
             </shader>
             <textures>
                 <texture UNIT="0" name="grass"/>
-            </textures>
+                <texture UNIT="1" name="out_pos"/>
+            </textures> 
         </material>
     </materials>
 

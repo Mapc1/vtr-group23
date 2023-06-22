@@ -69,5 +69,5 @@ void main(){
         spec = is_spec * specular * pow(intSpec, shine);
     }
 
-    color = (max(intensity, 0.25) * d) + spec;
+    color = vec4(1,1,1,1);//(max(intensity, 0.25) * d) + spec;
 }
